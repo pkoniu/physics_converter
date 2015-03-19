@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="lab9_basic_physics_converter" default="all">
+  
+  
+  <property file="build.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/*.lib/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/*.rbc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.zip"/>
+    <include name="*.apk"/>
+    <include name="*.war"/>
+    <include name="*.egg"/>
+    <include name="*.ear"/>
+    <include name="*.ane"/>
+    <include name="*.swc"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+  </patternset>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.jcommon-1.0.21.classpath">
+    <pathelement location="${basedir}/libraries/jcommon-1.0.21.jar"/>
+  </path>
+  
+  <path id="library.jfreechart-1.0.17.classpath">
+    <pathelement location="${basedir}/libraries/jfreechart-1.0.17.jar"/>
+  </path>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module lab9_basic_physics_converter -->
+  
+  <dirname property="module.lab9_basic_physics_converter.basedir" file="${ant.file}"/>
+  
+  
+  
+  <property name="compiler.args.lab9_basic_physics_converter" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
+  
+  <property name="lab9_basic_physics_converter.output.dir" value="${module.lab9_basic_physics_converter.basedir}/out/production/lab9_basic_physics_converter"/>
+  <property name="lab9_basic_physics_converter.testoutput.dir" value="${module.lab9_basic_physics_converter.basedir}/out/test/lab9_basic_physics_converter"/>
+  
+  <path id="lab9_basic_physics_converter.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="lab9_basic_physics_converter.module.production.classpath">
+    <path refid="library.jfreechart-1.0.17.classpath"/>
+    <path refid="library.jcommon-1.0.21.classpath"/>
+  </path>
+  
+  <path id="lab9_basic_physics_converter.runtime.production.module.classpath">
+    <pathelement location="${lab9_basic_physics_converter.output.dir}"/>
+    <path refid="library.jfreechart-1.0.17.classpath"/>
+    <path refid="library.jcommon-1.0.21.classpath"/>
+  </path>
+  
+  <path id="lab9_basic_physics_converter.module.classpath">
+    <pathelement location="${lab9_basic_physics_converter.output.dir}"/>
+    <path refid="library.jfreechart-1.0.17.classpath"/>
+    <path refid="library.jcommon-1.0.21.classpath"/>
+  </path>
+  
+  <path id="lab9_basic_physics_converter.runtime.module.classpath">
+    <pathelement location="${lab9_basic_physics_converter.testoutput.dir}"/>
+    <pathelement location="${lab9_basic_physics_converter.output.dir}"/>
+    <path refid="library.jfreechart-1.0.17.classpath"/>
+    <path refid="library.jcommon-1.0.21.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.lab9_basic_physics_converter">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.lab9_basic_physics_converter">
+    <patternset refid="excluded.from.module.lab9_basic_physics_converter"/>
+  </patternset>
+  
+  <path id="lab9_basic_physics_converter.module.sourcepath">
+    <dirset dir="${module.lab9_basic_physics_converter.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.lab9_basic_physics_converter" depends="compile.module.lab9_basic_physics_converter.production,compile.module.lab9_basic_physics_converter.tests" description="Compile module lab9_basic_physics_converter"/>
+  
+  <target name="compile.module.lab9_basic_physics_converter.production" description="Compile module lab9_basic_physics_converter; production classes">
+    <mkdir dir="${lab9_basic_physics_converter.output.dir}"/>
+    <javac destdir="${lab9_basic_physics_converter.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.lab9_basic_physics_converter}"/>
+      <bootclasspath refid="lab9_basic_physics_converter.module.bootclasspath"/>
+      <classpath refid="lab9_basic_physics_converter.module.production.classpath"/>
+      <src refid="lab9_basic_physics_converter.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.lab9_basic_physics_converter"/>
+    </javac>
+    
+    <copy todir="${lab9_basic_physics_converter.output.dir}">
+      <fileset dir="${module.lab9_basic_physics_converter.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.lab9_basic_physics_converter.tests" depends="compile.module.lab9_basic_physics_converter.production" description="compile module lab9_basic_physics_converter; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.lab9_basic_physics_converter" description="cleanup module">
+    <delete dir="${lab9_basic_physics_converter.output.dir}"/>
+    <delete dir="${lab9_basic_physics_converter.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.lab9_basic_physics_converter" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.lab9_basic_physics_converter" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.lab9_basic_physics_converter:jar" value="${basedir}/out/artifacts/lab9_basic_physics_converter_jar"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.lab9_basic_physics_converter.jar" value="${artifacts.temp.dir}/lab9_basic_physics_converter.jar"/>
+  </target>
+  
+  <target name="artifact.lab9_basic_physics_converter:jar" depends="init.artifacts, compile.module.lab9_basic_physics_converter" description="Build &#39;lab9_basic_physics_converter:jar&#39; artifact">
+    <property name="artifact.temp.output.lab9_basic_physics_converter:jar" value="${artifacts.temp.dir}/lab9_basic_physics_converter_jar"/>
+    <mkdir dir="${artifact.temp.output.lab9_basic_physics_converter:jar}"/>
+    <jar destfile="${temp.jar.path.lab9_basic_physics_converter.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+      <zipfileset dir="${lab9_basic_physics_converter.output.dir}"/>
+      <zipfileset src="${basedir}/libraries/jfreechart-1.0.17.jar"/>
+      <zipfileset src="${basedir}/libraries/jcommon-1.0.21.jar"/>
+    </jar>
+    <copy file="${temp.jar.path.lab9_basic_physics_converter.jar}" tofile="${artifact.temp.output.lab9_basic_physics_converter:jar}/lab9_basic_physics_converter.jar"/>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.lab9_basic_physics_converter:jar" description="Build all artifacts">
+    <mkdir dir="${artifact.output.lab9_basic_physics_converter:jar}"/>
+    <copy todir="${artifact.output.lab9_basic_physics_converter:jar}">
+      <fileset dir="${artifact.temp.output.lab9_basic_physics_converter:jar}"/>
+    </copy>
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>
